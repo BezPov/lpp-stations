@@ -34,13 +34,37 @@ const initRoutes = function (server) {
         return next();
     });
 
+    server.post('/', async function (req, res, next) {
+        const createdStation = await StationApi.create(req.body);
+
+        if (createdStation) {
+            res.json({
+                success: true,
+                data: createdStation
+            });
+        } else {
+            res.json(500, {
+                success: false
+            });
+        }
+
+        return next();
+    });
+
     server.get('/:stationId', async function (req, res, next) {
         const fetchedStation = await StationApi.findOne({ stationId: req.params.stationId });
 
-        res.json({
-            success: true,
-            data: fetchedStation
-        });
+        if (fetchedStation) {
+            res.json({
+                success: true,
+                data: fetchedStation
+            });
+        } else {
+            res.json(500, {
+                success: false,
+                message: 'Station not found'
+            });
+        }
 
         return next();
     });

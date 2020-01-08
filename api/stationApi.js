@@ -37,6 +37,8 @@ class StationApi {
 
         try {
             const createdStation = await StationModel.create(station);
+
+            return createdStation;
         } catch (ex) {
             logger.error(`[${process.env.npm_package_name}] Creating a station produced an error: ${JSON.stringify(ex)}`);
         }
