@@ -13,7 +13,7 @@ spec:
         app: lpp-stations
     spec:
       containers:
-        - image: bezpov/lpp-stations:1.0.1
+        - image: bezpov/lpp-stations:1.0.2
           name: lpp-stations-container
           env:
             - name: ETCD_SERVER
